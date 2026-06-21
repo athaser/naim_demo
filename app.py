@@ -19,6 +19,7 @@ HTML = r"""<!doctype html>
     min-height: 100vh;
     overflow: hidden;
     font-family: -apple-system, "Segoe UI", sans-serif;
+    touch-action: none;
   }
 
   .stage {
@@ -28,11 +29,13 @@ HTML = r"""<!doctype html>
     align-items: center;
     font-size: clamp(14px, 1.4vw, 22px);
     perspective: 20em;
+    cursor: grab;
   }
+  .stage.dragging { cursor: grabbing; }
 
   .dna {
     position: relative;
-    transform: rotate(15deg);
+    transform: rotate(15deg) rotateX(var(--drag-x, 0deg)) rotateY(var(--drag-y, 0deg));
     transform-style: preserve-3d;
   }
 
@@ -177,7 +180,41 @@ HTML = r"""<!doctype html>
   <p>Deployed by Sinartisis Cloud Engineer on Azure App Service.</p>
   <span class="badge">DNA &middot; Pharma &middot; Pure CSS</span>
 </div>
-<div class="hint">animation by Amit Sheen &middot; deployed by Sinartisis Cloud Engineer</div>
+<div class="hint">drag to tilt &middot; animation by Amit Sheen &middot; deployed by Sinartisis Cloud Engineer</div>
+<script>
+  // ~15 lines: drag-to-tilt the helix. Updates --drag-x / --drag-y CSS vars
+  // on .dna; the link spins keep running because they're on child elements.
+  (function () {
+    const stage = document.querySelector('.stage');
+    const dna = document.querySelector('.dna');
+    let rx = 0, ry = 0, lastX = 0, lastY = 0, dragging = false;
+    function apply() {
+      dna.style.setProperty('--drag-x', rx + 'deg');
+      dna.style.setProperty('--drag-y', ry + 'deg');
+    }
+    stage.addEventListener('pointerdown', function (e) {
+      if (e.target.closest('.card')) return;
+      dragging = true;
+      lastX = e.clientX; lastY = e.clientY;
+      stage.classList.add('dragging');
+      try { stage.setPointerCapture(e.pointerId); } catch (_) {}
+    });
+    stage.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      ry += (e.clientX - lastX) * 0.5;
+      rx -= (e.clientY - lastY) * 0.5;
+      lastX = e.clientX; lastY = e.clientY;
+      apply();
+    });
+    function stop(e) {
+      dragging = false;
+      stage.classList.remove('dragging');
+      try { stage.releasePointerCapture(e.pointerId); } catch (_) {}
+    }
+    stage.addEventListener('pointerup', stop);
+    stage.addEventListener('pointercancel', stop);
+  })();
+</script>
 </body>
 </html>
 """

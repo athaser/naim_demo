@@ -77,7 +77,7 @@ HTML = r"""<!doctype html>
   .link:nth-child(4n+3) { --clr1: hsl(240, 100%, 75%); --clr2: hsl(420, 100%, 75%); }
   .link:nth-child(4n+4) { --clr1: hsl(330, 100%, 75%); --clr2: hsl(510, 100%, 75%); }
 
-  /* The 4 nested divs form a continuous translucent ribbon between the two beads. */
+  /* Two nested divs form the translucent ribbon between the two beads. */
   .link > div {
     position: absolute; top: 0; left: 0;
     width: 100%; height: 100%;
@@ -89,9 +89,7 @@ HTML = r"""<!doctype html>
     animation: linkX 7.5s infinite linear reverse;
   }
   .link > div:nth-child(1) { animation-delay: calc(var(--iad) + 0s); }
-  .link > div:nth-child(2) { animation-delay: calc(var(--iad) + -1.875s); }
-  .link > div:nth-child(3) { animation-delay: calc(var(--iad) + -3.75s); }
-  .link > div:nth-child(4) { animation-delay: calc(var(--iad) + -5.625s); }
+  .link > div:nth-child(2) { animation-delay: calc(var(--iad) + -3.75s); }
 
   /* The two glowing beads at each end of a rung. */
   .link::before, .link::after {
@@ -148,30 +146,30 @@ HTML = r"""<!doctype html>
 <body>
 <div class="stage">
   <div class="dna">
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
-    <div class="link"><div></div><div></div><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
+    <div class="link"><div></div><div></div></div>
   </div>
 </div>
 <div class="card">
